@@ -1,29 +1,32 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.Task;
-import com.example.demo.repositories.taskRepository; // Corrigir o nome da classe de repositório
+import com.example.demo.repositories.taskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;  
+import java.util.List;
 
 @RestController
 @RequestMapping("/")
 public class TaskController {
 
     @GetMapping("/Hello")
-    public String hello() {
+    public String hello() 
+    {
         return "Hello, world!";
     }
 
     @GetMapping("/tarefa/{tarefa}")
-    public String greet(@PathVariable String tarefa) {
+    public String greet(@PathVariable String tarefa) 
+    {
         return "Tarefa para hoje: " + tarefa + "!";
     }
 
-    private final taskRepository taskRepository; // Corrigir o nome da classe de repositório
+    private final taskRepository taskRepository;
 
     @Autowired
-    public TaskController(taskRepository taskRepository) { // Corrigir o nome da classe de repositório
+    public TaskController(taskRepository taskRepository) 
+    {
         this.taskRepository = taskRepository;
     }
 
@@ -59,5 +62,5 @@ public class TaskController {
     public void deleteTask(@PathVariable Long id) {
         taskRepository.deleteById(id);
     }
-
 }
+
