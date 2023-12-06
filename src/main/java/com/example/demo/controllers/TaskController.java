@@ -4,20 +4,20 @@ import com.example.demo.models.Task;
 import com.example.demo.repositories.taskRepository; // Corrigir o nome da classe de repositório
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
+import java.util.List;  
 
 @RestController
-@RequestMapping("/tasks")
+@RequestMapping("/")
 public class TaskController {
 
-    @GetMapping("/hello")
+    @GetMapping("/Hello")
     public String hello() {
         return "Hello, world!";
     }
 
-    @GetMapping("/greet/{name}")
-    public String greet(@PathVariable String name) {
-        return "Hello, " + name + "!";
+    @GetMapping("/tarefa/{tarefa}")
+    public String greet(@PathVariable String tarefa) {
+        return "Tarefa para hoje: " + tarefa + "!";
     }
 
     private final taskRepository taskRepository; // Corrigir o nome da classe de repositório
