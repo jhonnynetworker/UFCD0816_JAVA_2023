@@ -8,7 +8,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/")
-public class TaskController {
+public class TaskController 
+{
 
     @GetMapping("/Hello")
     public String hello() 
@@ -30,22 +31,22 @@ public class TaskController {
         this.taskRepository = taskRepository;
     }
 
-    @GetMapping("/")
+    @GetMapping("task/")
     public List<Task> getAllTasks() {
         return taskRepository.findAll();
     }
 
-    @PostMapping("/")
+    @PostMapping("save/")
     public Task createTask(@RequestBody Task task) {
         return taskRepository.save(task);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("find/{id}")
     public Task getTaskById(@PathVariable Long id) {
         return taskRepository.findById(id).orElse(null);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("task/{id}")
     public Task updateTask(@PathVariable Long id, @RequestBody Task updatedTask) {
         Task existingTask = taskRepository.findById(id).orElse(null);
 
@@ -58,9 +59,9 @@ public class TaskController {
         return null;
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("task/{id}")
     public void deleteTask(@PathVariable Long id) {
         taskRepository.deleteById(id);
     }
-}
 
+}
