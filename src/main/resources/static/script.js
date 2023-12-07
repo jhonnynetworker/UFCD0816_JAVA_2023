@@ -8,7 +8,7 @@ async function getAllTasks() {
 function addTask() {
     const taskDescription = document.getElementById('taskDescription').value;
 
-    fetch('http://localhost:8080/api/tasks', {
+    fetch('http://localhost:8080/tasks', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
