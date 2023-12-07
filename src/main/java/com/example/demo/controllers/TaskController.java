@@ -7,17 +7,17 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/tasks")
 public class TaskController {
 
-    @GetMapping("/Hello")
+    @GetMapping("/hello")
     public String hello() {
         return "Hello, world!";
     }
 
-    @GetMapping("/tarefa/{tarefa}")
-    public String greet(@PathVariable String tarefa) {
-        return "Tarefa para hoje: " + tarefa + "!";
+    @GetMapping("/greet/{name}")
+    public String greet(@PathVariable String name) {
+        return "Hello, " + name + "!";
     }
 
     private final taskRepository taskRepository; // Corrigir o nome da classe de repositório
