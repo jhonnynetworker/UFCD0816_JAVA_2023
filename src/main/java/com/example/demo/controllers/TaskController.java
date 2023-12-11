@@ -1,13 +1,18 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.Task;
-import com.example.demo.repositories.taskRepository; // Corrigir o nome da classe de repositório
+import com.example.demo.repositories.taskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
 @RequestMapping("/")
+public class TaskController 
+{
+
+    @GetMapping("/Hello")
+    public String hello() 
 public class TaskController {
 
     @GetMapping("/Hello")
@@ -16,33 +21,36 @@ public class TaskController {
     }
 
     @GetMapping("/tarefa/{tarefa}")
+    public String greet(@PathVariable String tarefa) 
+    {
     public String greet(@PathVariable String tarefa) {
         return "Tarefa para hoje: " + tarefa + "!";
     }
 
-    private final taskRepository taskRepository; // Corrigir o nome da classe de repositório
+    private final taskRepository taskRepository;
 
     @Autowired
-    public TaskController(taskRepository taskRepository) { // Corrigir o nome da classe de repositório
+    public TaskController(taskRepository taskRepository) 
+    {
         this.taskRepository = taskRepository;
     }
 
-    @GetMapping("/")
+    @GetMapping("task/")
     public List<Task> getAllTasks() {
         return taskRepository.findAll();
     }
 
-    @PostMapping("/")
+    @PostMapping("save/")
     public Task createTask(@RequestBody Task task) {
         return taskRepository.save(task);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("find/{id}")
     public Task getTaskById(@PathVariable Long id) {
         return taskRepository.findById(id).orElse(null);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("task/{id}")
     public Task updateTask(@PathVariable Long id, @RequestBody Task updatedTask) {
         Task existingTask = taskRepository.findById(id).orElse(null);
 
@@ -55,8 +63,9 @@ public class TaskController {
         return null;
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("task/{id}")
     public void deleteTask(@PathVariable Long id) {
         taskRepository.deleteById(id);
     }
+
 }
