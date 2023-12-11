@@ -13,13 +13,17 @@ public class TaskController
 
     @GetMapping("/Hello")
     public String hello() 
-    {
+public class TaskController {
+
+    @GetMapping("/Hello")
+    public String hello() {
         return "Hello, world!";
     }
 
     @GetMapping("/tarefa/{tarefa}")
     public String greet(@PathVariable String tarefa) 
     {
+    public String greet(@PathVariable String tarefa) {
         return "Tarefa para hoje: " + tarefa + "!";
     }
 
