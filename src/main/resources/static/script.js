@@ -1,23 +1,35 @@
-// script.js
-const apiUrl = 'http://localhost:8080/tasks';
+// scripts.js
+const taskList = document.getElementById('taskList');
 
-async function getAllTasks() {
-    const response = await fetch(apiUrl);
-    const tasks = await response.json();
-    // Atualize o seu frontend com as tarefas recuperadas
-}
-
-async function addTodo() {
-    const description = document.getElementById('new-todo').value;
-    const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ description }),
+function fetchTasks() {
+  fetch('/api/') // Sua URL da API pode variar, dependendo de como está configurada
+    .then(response => response.json())
+    .then(tasks => {
+      taskList.innerHTML = '';
+      tasks.forEach(task => {
+        const listItem = document.createElement('li');
+        listItem.textContent = task.description;
+        taskList.appendChild(listItem);
+      });
     });
-    const newTask = await response.json();
-    // Adicione a nova tarefa ao seu frontend
 }
 
-// Implemente funções semelhantes para atualizar e excluir tarefas
+function createTask() {
+  const taskDescription = document.getElementById('taskDescription').value;
+  fetch('/api/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ description: taskDescription, isCompleted: false }),
+  })
+  .then(fetchTasks) // Atualiza a lista de tarefas após a criação
+  .then(() => {
+    document.getElementById('taskDescription').value = ''; // Limpa o campo de entrada
+  });
+}
+
+// Carrega as tarefas quando a página carrega
+document.addEventListener('DOMContentLoaded', () => {
+  fetchTasks();
+});

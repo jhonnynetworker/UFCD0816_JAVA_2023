@@ -1,22 +1,30 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Taks</title>
+  <meta charset="UTF-8">
+  <title>Task Manager</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="todo-container">
-        <h1>Todo List</h1>
-        <ul id="todo-list">
-            <!-- Todo items will be added dynamically here -->
-        </ul>
-        <div class="add-todo">
-            <input type="text" id="new-todo" placeholder="Add a new todo">
-            <button onclick="addTodo()">Add</button>
-        </div>
-    </div>    
-    <link rel="script" href="script.js">
+  <header>
+    <h1>Task Manager</h1>
+  </header>
+  
+  <main>
+    <section class="tasks-section">
+      <h2>Tasks</h2>
+      <ul id="taskList"></ul>
+    </section>
+  
+    <section class="add-task-section">
+      <h2>Add Task</h2>
+      <div class="input-group">
+        <input type="text" id="taskDescription" placeholder="Task description">
+        <button onclick="createTask()">Add Task</button>
+      </div>
+    </section>
+  </main>
+  
+  <script src="scripts.js"></script>
 </body>
 </html>
